@@ -2,372 +2,367 @@
 <html lang="en" class="h-full">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zendesk Ticket Management Training</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            overflow: auto;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zendesk Ticket Management Training</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: auto;
+    }
 
-        html,
-        body {
-            height: 100%;
-        }
+    html,
+    body {
+      height: 100%;
+    }
 
-        .hotspot {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: rgba(0, 123, 255, 0.7);
-            border: 3px solid white;
-            border-radius: 50%;
-            cursor: pointer;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
-            transition: all 0.3s ease;
-            z-index: 50;
-            /* Ensures dots are clickable */
-        }
+    .hotspot {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: rgba(0, 123, 255, 0.7);
+      border: 3px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+      transition: all 0.3s ease;
+      z-index: 50;
+      /* Ensures dots are clickable */
+    }
 
-        .hotspot:hover {
-            background: rgba(0, 123, 255, 0.9);
-            transform: scale(1.2);
-            z-index: 60;
-        }
+    .hotspot:hover {
+      background: rgba(0, 123, 255, 0.9);
+      transform: scale(1.2);
+      z-index: 60;
+    }
 
-        .hotspot.active {
-            background: rgba(40, 167, 69, 0.9);
-            border-color: #28a745;
-            animation: none;
-        }
+    .hotspot.active {
+      background: rgba(40, 167, 69, 0.9);
+      border-color: #28a745;
+      animation: none;
+    }
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
-            }
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+      }
 
-            70% {
-                box-shadow: 0 0 0 15px rgba(0, 123, 255, 0);
-            }
+      70% {
+        box-shadow: 0 0 0 15px rgba(0, 123, 255, 0);
+      }
 
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-            }
-        }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+      }
+    }
 
-        .tooltip-content {
-            max-height: 400px;
-            overflow-y: auto;
-        }
+    .tooltip-content {
+      max-height: 400px;
+      overflow-y: auto;
+    }
 
-        .progress-ring {
-            transform: rotate(-90deg);
-        }
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
 
-        .progress-ring-circle {
-            transition: stroke-dashoffset 0.5s ease;
-        }
+    .progress-ring-circle {
+      transition: stroke-dashoffset 0.5s ease;
+    }
 
-        .section-card {
-            transition: all 0.3s ease;
-        }
+    .section-card {
+      transition: all 0.3s ease;
+    }
 
-        .section-card:hover {
-            transform: translateY(-2px);
-        }
+    .section-card:hover {
+      transform: translateY(-2px);
+    }
 
-        /* Smooth scrolling for user experience */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    /* Smooth scrolling for user experience */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 
 <body class="h-full">
-    <div id="app" class="h-full w-full">
-        <div id="welcomeScreen" class="h-full w-full flex items-center justify-center p-8">
-            <div class="max-w-4xl w-full text-center">
-                <div class="mb-8">
-                    <svg class="w-24 h-24 mx-auto mb-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                        </path>
-                    </svg>
-                </div>
-                <h1 id="moduleTitle" class="text-5xl font-bold mb-4">🖥️ Ticket Management System Guide</h1>
-                <p id="moduleSubtitle" class="text-xl mb-8 opacity-90">Interactive learning module for Zendesk ticket
-                    management</p>
-                <div class="mb-8 p-6 rounded-lg inline-block">
-                    <p class="text-lg mb-4">In this module, you will learn:</p>
-                    <ul class="text-left inline-block space-y-2">
-                        <li class="flex items-start"><span class="mr-2">✓</span> <span>Navigate the Zendesk interface
-                                efficiently</span></li>
-                        <li class="flex items-start"><span class="mr-2">✓</span> <span>Understand ticket fields and
-                                attributes</span></li>
-                        <li class="flex items-start"><span class="mr-2">✓</span> <span>Manage ticket assignments and
-                                priorities</span></li>
-                        <li class="flex items-start"><span class="mr-2">✓</span> <span>Use internal notes and public
-                                replies</span></li>
-                    </ul>
-                </div><button id="startBtn"
-                    class="px-8 py-4 text-xl font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"> Start
-                    Learning → </button>
-            </div>
+  <div id="app" class="h-full w-full">
+    <div id="welcomeScreen" class="h-full w-full flex items-center justify-center p-8">
+      <div class="max-w-4xl w-full text-center">
+        <div class="mb-8">
+          <svg class="w-24 h-24 mx-auto mb-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+            </path>
+          </svg>
         </div>
-
-        <div id="learningScreen" class="hidden h-full w-full flex flex-col">
-            <header class="px-6 py-4 shadow-md flex items-center justify-between">
-                <h2 class="text-2xl font-bold">Zendesk Ticket Management</h2>
-                <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-2"><span class="text-sm font-medium">Progress:</span>
-                        <div class="relative w-16 h-16">
-                            <svg class="w-16 h-16">
-                                <circle class="text-gray-200" stroke-width="4" stroke="currentColor" fill="transparent"
-                                    r="26" cx="32" cy="32" />
-                                <circle id="progressCircle" class="progress-ring-circle" stroke-width="4"
-                                    stroke-dasharray="163.36" stroke-dashoffset="163.36" stroke-linecap="round"
-                                    stroke="currentColor" fill="transparent" r="26" cx="32" cy="32"
-                                    style="transform: rotate(-90deg); transform-origin: 50% 50%;" />
-                            </svg><span id="progressText"
-                                class="absolute inset-0 flex items-center justify-center text-sm font-bold">0%</span>
-                        </div>
-                    </div><button id="resetBtn"
-                        class="px-4 py-2 text-sm rounded-lg hover:opacity-80 transition-opacity"> Reset </button>
-                </div>
-            </header>
-
-            <div class="flex-1 overflow-y-auto">
-                <div class="max-w-7xl mx-auto p-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="login">
-                            <div class="text-3xl mb-2">🔐</div>
-                            <h3 class="font-bold text-lg mb-1">Login Guide</h3>
-                            <p class="text-sm opacity-80">Access Instructions</p>
-                        </button>
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="topRight">
-                            <div class="text-3xl mb-2">🔍</div>
-                            <h3 class="font-bold text-lg mb-1">Top Right</h3>
-                            <p class="text-sm opacity-80">Search &amp; Navigation</p>
-                        </button>
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="leftPanel">
-                            <div class="text-3xl mb-2">📋</div>
-                            <h3 class="font-bold text-lg mb-1">Left Panel</h3>
-                            <p class="text-sm opacity-80">Ticket Details</p>
-                        </button>
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="midPage">
-                            <div class="text-3xl mb-2">💬</div>
-                            <h3 class="font-bold text-lg mb-1">Mid Page</h3>
-                            <p class="text-sm opacity-80">Communication</p>
-                        </button>
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="rightPanel">
-                            <div class="text-3xl mb-2">🔧</div>
-                            <h3 class="font-bold text-lg mb-1">Right Panel</h3>
-                            <p class="text-sm opacity-80">Context &amp; Tools</p>
-                        </button>
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="homeTab">
-                            <div class="text-3xl mb-2">🏠</div>
-                            <h3 class="font-bold text-lg mb-1">Home Tab</h3>
-                            <p class="text-sm opacity-80">Dashboard &amp; Stats</p>
-                        </button>
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="actionBar">
-                            <div class="text-3xl mb-2">⚙️</div>
-                            <h3 class="font-bold text-lg mb-1">Action Bar</h3>
-                            <p class="text-sm opacity-80">Status &amp; Macros</p>
-                        </button>
-                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
-                            data-section="procedures">
-                            <div class="text-3xl mb-2">📝</div>
-                            <h3 class="font-bold text-lg mb-1">Procedures</h3>
-                            <p class="text-sm opacity-80">Best Practices</p>
-                        </button>
-                    </div>
-
-                    <div id="simulator" class="rounded-lg shadow-xl overflow-hidden mb-8">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-4">Interactive Zendesk Interface</h3>
-                            <p class="mb-6 opacity-80">Click on the hotspots to learn about each area. The explanation
-                                will appear below the image.</p>
-
-                            <div class="relative border-4 rounded-lg overflow-hidden" style="min-height: 600px;">
-                                <div class="absolute inset-0">
-                                    <div class="h-16 border-b flex items-center justify-between px-4"
-                                        style="background: #03363d;">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-8 h-8 rounded flex items-center justify-center font-bold text-white"
-                                                style="background: #03363d;">Z</div>
-                                            <div class="w-8 h-8 rounded-full flex items-center justify-center"
-                                                style="background: #037f8c; font-size: 18px;">🏠</div>
-                                            <span class="font-semibold text-white">Ticket #12345</span>
-                                        </div>
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-8 h-8 rounded-full flex items-center justify-center"
-                                                style="background: #037f8c; font-size: 18px;">🔍</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex" style="height: calc(100% - 64px);">
-                                        <div class="w-64 border-r p-4 overflow-y-auto" style="background: #f8f9fa;">
-                                            <div class="mb-4"><label class="block text-xs font-semibold mb-1"
-                                                    style="color: #68737d;">VIEW</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">Fraud support
-                                                    Single view</div>
-                                            </div>
-                                            <div class="mb-4"><label class="block text-xs font-semibold mb-1"
-                                                    style="color: #68737d;">ASSIGNEE</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">Fraud Support
-                                                </div>
-                                            </div>
-                                            <div class="mb-4"><label class="block text-xs font-semibold mb-1"
-                                                    style="color: #68737d;">REQUESTER</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">John Doe</div>
-                                            </div>
-                                            <div class="mb-4"><label class="block text-xs font-semibold mb-1"
-                                                    style="color: #68737d;">LOCATION ID</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">LOC-98765</div>
-                                            </div>
-                                            <div class="mb-4"><label class="block text-xs font-semibold mb-1"
-                                                    style="color: #68737d;">PRIORITY</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">Normal</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex-1 p-6 overflow-y-auto">
-                                            <div class="mb-4">
-                                                <h2 class="text-xl font-bold mb-2">Review Removal Request</h2>
-                                                <div class="text-sm opacity-60">Created: 2 hours ago</div>
-                                            </div>
-                                            <div class="rounded-lg p-4 mb-4">
-                                                <p class="mb-4">Customer is requesting review of removed content from
-                                                    their property listing.</p>
-                                            </div>
-                                            <div class="rounded-lg p-4 mb-20"><label
-                                                    class="block text-sm font-semibold mb-2">Reply:</label>
-                                                <div class="border rounded p-3 min-h-24 text-sm bg-white mb-3"
-                                                    style="color: #68737d;">Type your response here...</div>
-                                                <div class="flex gap-2">
-                                                    <button class="px-4 py-2 text-sm rounded border bg-white"
-                                                        style="color: #2f3941;">Internal Note</button>
-                                                    <button class="px-4 py-2 text-sm rounded text-white"
-                                                        style="background: #1f73b7;">Public Reply</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="w-64 border-l p-4 overflow-y-auto" style="background: #f8f9fa;">
-                                            <div class="mb-6">
-                                                <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">CUSTOMER
-                                                    CONTEXT</h3>
-                                                <div class="text-sm space-y-2">
-                                                    <div><span style="color: #68737d;">Email:</span> john@example.com
-                                                    </div>
-                                                    <div><span style="color: #68737d;">Local time:</span> 2:30 PM</div>
-                                                    <div><span style="color: #68737d;">Language:</span> English</div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-6">
-                                                <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">KNOWLEDGE
-                                                </h3>
-                                                <div class="text-sm" style="color: #68737d;">Confluence access</div>
-                                            </div>
-                                            <div>
-                                                <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">APPS</h3>
-                                                <div class="space-y-2 text-sm">
-                                                    <div>📍 URD</div>
-                                                    <div>🏢 Location Center</div>
-                                                    <div>👤 Owner Tool</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="absolute bottom-0 left-0 right-0 h-16 border-t px-4 flex items-center justify-between"
-                                        style="background: #f8f9fa;">
-                                        <button class="px-4 py-2 rounded text-sm font-semibold text-white"
-                                            style="background: #1f73b7;">Apply Macro</button>
-                                        <div class="flex items-center gap-3">
-                                            <select class="px-3 py-2 rounded text-sm border bg-white"
-                                                style="color: #2f3941;">
-                                                <option>Next available ticket</option>
-                                                <option>Stay on ticket</option>
-                                            </select>
-                                            <select class="px-3 py-2 rounded text-sm border bg-white"
-                                                style="color: #2f3941;">
-                                                <option>New</option>
-                                                <option>Open</option>
-                                                <option>Pending</option>
-                                                <option>On-hold</option>
-                                                <option>Solved</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="hotspot" data-hotspot="search" style="top: 20px; right: 60px;"></div>
-                                <div class="hotspot" data-hotspot="home" style="top: 20px; left: 130px;"></div>
-                                <div class="hotspot" data-hotspot="view" style="top: 90px; left: 20px;"></div>
-                                <div class="hotspot" data-hotspot="assignee" style="top: 150px; left: 20px;"></div>
-                                <div class="hotspot" data-hotspot="requester" style="top: 210px; left: 20px;"></div>
-                                <div class="hotspot" data-hotspot="locationId" style="top: 270px; left: 20px;"></div>
-                                <div class="hotspot" data-hotspot="priority" style="top: 330px; left: 20px;"></div>
-                                <div class="hotspot" data-hotspot="subject"
-                                    style="top: 90px; left: 50%; transform: translateX(-50%);"></div>
-                                <div class="hotspot" data-hotspot="reply"
-                                    style="top: 350px; left: 50%; transform: translateX(-50%);"></div>
-                                <div class="hotspot" data-hotspot="customer" style="top: 90px; right: 20px;"></div>
-                                <div class="hotspot" data-hotspot="apps" style="top: 280px; right: 20px;"></div>
-                                <div class="hotspot" data-hotspot="actionBar"
-                                    style="bottom: 20px; left: 50%; transform: translateX(-50%);"></div>
-                                <div class="hotspot" data-hotspot="ticketMerge" style="top: 20px; left: 200px;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="infoPanel" class="hidden rounded-lg shadow-lg p-6 mb-8 border-2 border-blue-500 bg-white">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 id="infoPanelTitle" class="text-2xl font-bold text-blue-800"></h3><button id="closeInfo"
-                                class="text-3xl hover:opacity-70 transition-opacity">×</button>
-                        </div>
-                        <div id="infoPanelContent" class="tooltip-content text-gray-700"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h1 id="moduleTitle" class="text-5xl font-bold mb-4">🖥️ Ticket Management System Guide</h1>
+        <p id="moduleSubtitle" class="text-xl mb-8 opacity-90">Interactive learning module for Zendesk ticket
+          management</p>
+        <div class="mb-8 p-6 rounded-lg inline-block">
+          <p class="text-lg mb-4">In this module, you will learn:</p>
+          <ul class="text-left inline-block space-y-2">
+            <li class="flex items-start"><span class="mr-2">✓</span> <span>Navigate the Zendesk interface
+                efficiently</span></li>
+            <li class="flex items-start"><span class="mr-2">✓</span> <span>Understand ticket fields and
+                attributes</span></li>
+            <li class="flex items-start"><span class="mr-2">✓</span> <span>Manage ticket assignments and
+                priorities</span></li>
+            <li class="flex items-start"><span class="mr-2">✓</span> <span>Use internal notes and public
+                replies</span></li>
+          </ul>
+        </div><button id="startBtn"
+          class="px-8 py-4 text-xl font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"> Start
+          Learning → </button>
+      </div>
     </div>
 
-    <script>
-        const defaultConfig = {
-            primary_color: '#03363d',
-            background_color: '#f8f9fa',
-            surface_color: '#ffffff',
-            text_color: '#2f3941',
-            accent_color: '#1f73b7',
-            font_family: 'Inter',
-            font_size: 16,
-            module_title: '🖥️ Ticket Management System Guide',
-            module_subtitle: 'Interactive learning module for Zendesk ticket management'
-        };
+    <div id="learningScreen" class="hidden h-full w-full flex flex-col">
+      <header class="px-6 py-4 shadow-md flex items-center justify-between">
+        <h2 class="text-2xl font-bold">Zendesk Ticket Management</h2>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2"><span class="text-sm font-medium">Progress:</span>
+            <div class="relative w-16 h-16">
+              <svg class="w-16 h-16">
+                <circle class="text-gray-200" stroke-width="4" stroke="currentColor" fill="transparent" r="26" cx="32"
+                  cy="32" />
+                <circle id="progressCircle" class="progress-ring-circle" stroke-width="4" stroke-dasharray="163.36"
+                  stroke-dashoffset="163.36" stroke-linecap="round" stroke="currentColor" fill="transparent" r="26"
+                  cx="32" cy="32" style="transform: rotate(-90deg); transform-origin: 50% 50%;" />
+              </svg><span id="progressText"
+                class="absolute inset-0 flex items-center justify-center text-sm font-bold">0%</span>
+            </div>
+          </div><button id="resetBtn" class="px-4 py-2 text-sm rounded-lg hover:opacity-80 transition-opacity"> Reset
+          </button>
+        </div>
+      </header>
 
-        let visitedHotspots = new Set();
-        const totalHotspots = 14;
+      <div class="flex-1 overflow-y-auto">
+        <div class="max-w-7xl mx-auto p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="login">
+              <div class="text-3xl mb-2">🔐</div>
+              <h3 class="font-bold text-lg mb-1">Login Guide</h3>
+              <p class="text-sm opacity-80">Access Instructions</p>
+            </button>
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="topRight">
+              <div class="text-3xl mb-2">🔍</div>
+              <h3 class="font-bold text-lg mb-1">Top Right</h3>
+              <p class="text-sm opacity-80">Search &amp; Navigation</p>
+            </button>
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="leftPanel">
+              <div class="text-3xl mb-2">📋</div>
+              <h3 class="font-bold text-lg mb-1">Left Panel</h3>
+              <p class="text-sm opacity-80">Ticket Details</p>
+            </button>
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="midPage">
+              <div class="text-3xl mb-2">💬</div>
+              <h3 class="font-bold text-lg mb-1">Mid Page</h3>
+              <p class="text-sm opacity-80">Communication</p>
+            </button>
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="rightPanel">
+              <div class="text-3xl mb-2">🔧</div>
+              <h3 class="font-bold text-lg mb-1">Right Panel</h3>
+              <p class="text-sm opacity-80">Context &amp; Tools</p>
+            </button>
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="homeTab">
+              <div class="text-3xl mb-2">🏠</div>
+              <h3 class="font-bold text-lg mb-1">Home Tab</h3>
+              <p class="text-sm opacity-80">Dashboard &amp; Stats</p>
+            </button>
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="actionBar">
+              <div class="text-3xl mb-2">⚙️</div>
+              <h3 class="font-bold text-lg mb-1">Action Bar</h3>
+              <p class="text-sm opacity-80">Status &amp; Macros</p>
+            </button>
+            <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+              data-section="procedures">
+              <div class="text-3xl mb-2">📝</div>
+              <h3 class="font-bold text-lg mb-1">Procedures</h3>
+              <p class="text-sm opacity-80">Best Practices</p>
+            </button>
+          </div>
 
-        const hotspotContent = {
-            // --- RESTORED FULL CONTENT ---
-            search: {
-                title: '🔍 Search Functionality',
-                content: `
+          <div id="simulator" class="rounded-lg shadow-xl overflow-hidden mb-8">
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-4">Interactive Zendesk Interface</h3>
+              <p class="mb-6 opacity-80">Click on the hotspots to learn about each area. The explanation
+                will appear below the image.</p>
+
+              <div class="relative border-4 rounded-lg overflow-hidden" style="min-height: 600px;">
+                <div class="absolute inset-0">
+                  <div class="h-16 border-b flex items-center justify-between px-4" style="background: #03363d;">
+                    <div class="flex items-center gap-4">
+                      <div class="w-8 h-8 rounded flex items-center justify-center font-bold text-white"
+                        style="background: #03363d;">Z</div>
+                      <div class="w-8 h-8 rounded-full flex items-center justify-center"
+                        style="background: #037f8c; font-size: 18px;">🏠</div>
+                      <span class="font-semibold text-white">Ticket #12345</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded-full flex items-center justify-center"
+                        style="background: #037f8c; font-size: 18px;">🔍</div>
+                    </div>
+                  </div>
+
+                  <div class="flex" style="height: calc(100% - 64px);">
+                    <div class="w-64 border-r p-4 overflow-y-auto" style="background: #f8f9fa;">
+                      <div class="mb-4"><label class="block text-xs font-semibold mb-1"
+                          style="color: #68737d;">VIEW</label>
+                        <div class="px-3 py-2 rounded text-sm border bg-white">Fraud support
+                          Single view</div>
+                      </div>
+                      <div class="mb-4"><label class="block text-xs font-semibold mb-1"
+                          style="color: #68737d;">ASSIGNEE</label>
+                        <div class="px-3 py-2 rounded text-sm border bg-white">Fraud Support
+                        </div>
+                      </div>
+                      <div class="mb-4"><label class="block text-xs font-semibold mb-1"
+                          style="color: #68737d;">REQUESTER</label>
+                        <div class="px-3 py-2 rounded text-sm border bg-white">John Doe</div>
+                      </div>
+                      <div class="mb-4"><label class="block text-xs font-semibold mb-1" style="color: #68737d;">LOCATION
+                          ID</label>
+                        <div class="px-3 py-2 rounded text-sm border bg-white">LOC-98765</div>
+                      </div>
+                      <div class="mb-4"><label class="block text-xs font-semibold mb-1"
+                          style="color: #68737d;">PRIORITY</label>
+                        <div class="px-3 py-2 rounded text-sm border bg-white">Normal</div>
+                      </div>
+                    </div>
+
+                    <div class="flex-1 p-6 overflow-y-auto">
+                      <div class="mb-4">
+                        <h2 class="text-xl font-bold mb-2">Review Removal Request</h2>
+                        <div class="text-sm opacity-60">Created: 2 hours ago</div>
+                      </div>
+                      <div class="rounded-lg p-4 mb-4">
+                        <p class="mb-4">Customer is requesting review of removed content from
+                          their property listing.</p>
+                      </div>
+                      <div class="rounded-lg p-4 mb-20"><label class="block text-sm font-semibold mb-2">Reply:</label>
+                        <div class="border rounded p-3 min-h-24 text-sm bg-white mb-3" style="color: #68737d;">Type your
+                          response here...</div>
+                        <div class="flex gap-2">
+                          <button class="px-4 py-2 text-sm rounded border bg-white" style="color: #2f3941;">Internal
+                            Note</button>
+                          <button class="px-4 py-2 text-sm rounded text-white" style="background: #1f73b7;">Public
+                            Reply</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="w-64 border-l p-4 overflow-y-auto" style="background: #f8f9fa;">
+                      <div class="mb-6">
+                        <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">CUSTOMER
+                          CONTEXT</h3>
+                        <div class="text-sm space-y-2">
+                          <div><span style="color: #68737d;">Email:</span> john@example.com
+                          </div>
+                          <div><span style="color: #68737d;">Local time:</span> 2:30 PM</div>
+                          <div><span style="color: #68737d;">Language:</span> English</div>
+                        </div>
+                      </div>
+                      <div class="mb-6">
+                        <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">KNOWLEDGE
+                        </h3>
+                        <div class="text-sm" style="color: #68737d;">Confluence access</div>
+                      </div>
+                      <div>
+                        <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">APPS</h3>
+                        <div class="space-y-2 text-sm">
+                          <div>📍 URD</div>
+                          <div>🏢 Location Center</div>
+                          <div>👤 Owner Tool</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="absolute bottom-0 left-0 right-0 h-16 border-t px-4 flex items-center justify-between"
+                    style="background: #f8f9fa;">
+                    <button class="px-4 py-2 rounded text-sm font-semibold text-white"
+                      style="background: #1f73b7;">Apply Macro</button>
+                    <div class="flex items-center gap-3">
+                      <select class="px-3 py-2 rounded text-sm border bg-white" style="color: #2f3941;">
+                        <option>Next available ticket</option>
+                        <option>Stay on ticket</option>
+                      </select>
+                      <select class="px-3 py-2 rounded text-sm border bg-white" style="color: #2f3941;">
+                        <option>New</option>
+                        <option>Open</option>
+                        <option>Pending</option>
+                        <option>On-hold</option>
+                        <option>Solved</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hotspot" data-hotspot="search" style="top: 20px; right: 60px;"></div>
+                <div class="hotspot" data-hotspot="home" style="top: 20px; left: 130px;"></div>
+                <div class="hotspot" data-hotspot="view" style="top: 90px; left: 20px;"></div>
+                <div class="hotspot" data-hotspot="assignee" style="top: 150px; left: 20px;"></div>
+                <div class="hotspot" data-hotspot="requester" style="top: 210px; left: 20px;"></div>
+                <div class="hotspot" data-hotspot="locationId" style="top: 270px; left: 20px;"></div>
+                <div class="hotspot" data-hotspot="priority" style="top: 330px; left: 20px;"></div>
+                <div class="hotspot" data-hotspot="subject" style="top: 90px; left: 50%; transform: translateX(-50%);">
+                </div>
+                <div class="hotspot" data-hotspot="reply" style="top: 350px; left: 50%; transform: translateX(-50%);">
+                </div>
+                <div class="hotspot" data-hotspot="customer" style="top: 90px; right: 20px;"></div>
+                <div class="hotspot" data-hotspot="apps" style="top: 280px; right: 20px;"></div>
+                <div class="hotspot" data-hotspot="actionBar"
+                  style="bottom: 20px; left: 50%; transform: translateX(-50%);"></div>
+                <div class="hotspot" data-hotspot="ticketMerge" style="top: 20px; left: 200px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="infoPanel" class="hidden rounded-lg shadow-lg p-6 mb-8 border-2 border-blue-500 bg-white">
+            <div class="flex justify-between items-start mb-4">
+              <h3 id="infoPanelTitle" class="text-2xl font-bold text-blue-800"></h3><button id="closeInfo"
+                class="text-3xl hover:opacity-70 transition-opacity">×</button>
+            </div>
+            <div id="infoPanelContent" class="tooltip-content text-gray-700"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const defaultConfig = {
+      primary_color: '#03363d',
+      background_color: '#f8f9fa',
+      surface_color: '#ffffff',
+      text_color: '#2f3941',
+      accent_color: '#1f73b7',
+      font_family: 'Inter',
+      font_size: 16,
+      module_title: '🖥️ Ticket Management System Guide',
+      module_subtitle: 'Interactive learning module for Zendesk ticket management'
+    };
+
+    let visitedHotspots = new Set();
+    const totalHotspots = 14;
+
+    const hotspotContent = {
+      // --- RESTORED FULL CONTENT ---
+      search: {
+        title: '🔍 Search Functionality',
+        content: `
           <p class="mb-4">The search icon provides powerful query capabilities:</p>
           <ul class="space-y-2 mb-4">
             <li class="flex items-start">
@@ -391,10 +386,10 @@
             <p class="text-sm"><strong>💡 Pro Tip:</strong> Use advanced search operators for more precise results</p>
           </div>
         `
-            },
-            view: {
-                title: '📋 View Tab',
-                content: `
+      },
+      view: {
+        title: '📋 View Tab',
+        content: `
           <p class="mb-4">The View tab controls which tickets you see:</p>
           <div class="mb-4 p-4 rounded-lg">
             <p class="font-semibold mb-2">Default View: Fraud Support Single View</p>
@@ -408,10 +403,10 @@
             <p class="text-sm"><strong>⚠️ Important:</strong> Always verify you're in the correct view before working on tickets</p>
           </div>
         `
-            },
-            assignee: {
-                title: '👤 Assignee Field',
-                content: `
+      },
+      assignee: {
+        title: '👤 Assignee Field',
+        content: `
           <p class="mb-4">The Assignee field designates ticket ownership:</p>
           <div class="mb-4 p-4 rounded-lg">
             <p class="font-semibold mb-2">Default: Fraud Support</p>
@@ -428,10 +423,10 @@
             </ul>
           </div>
         `
-            },
-            requester: {
-                title: '🙋 Requester Information',
-                content: `
+      },
+      requester: {
+        title: '🙋 Requester Information',
+        content: `
           <p class="mb-4">The Requester is the person who initiated the ticket:</p>
           <div class="mb-4">
             <p class="font-semibold mb-2">Typical Scenarios:</p>
@@ -455,10 +450,10 @@
             <p class="text-sm">If customer support email appears instead of actual name, you <strong>must manually update</strong> to the real customer name before closing the ticket</p>
           </div>
         `
-            },
-            locationId: {
-                title: '📍 Location ID',
-                content: `
+      },
+      locationId: {
+        title: '📍 Location ID',
+        content: `
           <p class="mb-4">A unique identifier for properties:</p>
           <div class="mb-4 p-4 rounded-lg">
             <p class="font-semibold mb-2">Purpose:</p>
@@ -472,10 +467,10 @@
             <p class="text-sm"><strong>💡 Best Practice:</strong> Always verify Location ID when working with properties that have common names like "Grand Hotel" or "Beach Resort"</p>
           </div>
         `
-            },
-            priority: {
-                title: '⚡ Priority Settings',
-                content: `
+      },
+      priority: {
+        title: '⚡ Priority Settings',
+        content: `
           <p class="mb-4">Priority determines ticket urgency and queue position:</p>
           <div class="space-y-3 mb-4">
             <div class="p-3 rounded-lg">
@@ -499,10 +494,10 @@
             <p class="text-sm"><strong>Note:</strong> Changing priority automatically re-sorts tickets in the queue</p>
           </div>
         `
-            },
-            subject: {
-                title: '📄 Ticket Header & Details',
-                content: `
+      },
+      subject: {
+        title: '📄 Ticket Header & Details',
+        content: `
           <p class="mb-4">The center area displays ticket communication:</p>
           <div class="mb-4 p-4 rounded-lg">
             <p class="font-semibold mb-2">Header/Subject Line</p>
@@ -516,10 +511,10 @@
             <p class="text-sm"><strong>💡 Tip:</strong> Review full ticket history before responding to understand complete context</p>
           </div>
         `
-            },
-            reply: {
-                title: '💬 Reply Field',
-                content: `
+      },
+      reply: {
+        title: '💬 Reply Field',
+        content: `
           <p class="mb-4">The reply field serves dual purposes:</p>
           <div class="mb-4 p-4 rounded-lg border-l-4">
             <p class="font-semibold mb-2">🔒 Internal Note</p>
@@ -541,10 +536,10 @@
             <p class="text-sm"><strong>⚠️ Remember:</strong> Always select the correct reply type before sending</p>
           </div>
         `
-            },
-            customer: {
-                title: '👤 Customer Context',
-                content: `
+      },
+      customer: {
+        title: '👤 Customer Context',
+        content: `
           <p class="mb-4">Essential customer information at a glance:</p>
           <div class="space-y-3 mb-4">
             <div class="p-3 rounded-lg">
@@ -568,10 +563,10 @@
             <p class="text-sm"><strong>💡 Pro Tip:</strong> Check local time before calling customers</p>
           </div>
         `
-            },
-            apps: {
-                title: '🔧 Apps & Tools',
-                content: `
+      },
+      apps: {
+        title: '🔧 Apps & Tools',
+        content: `
           <p class="mb-4">Quick access to essential internal tools:</p>
           <div class="space-y-3 mb-4">
             <div class="p-4 rounded-lg">
@@ -595,10 +590,10 @@
             <p class="text-sm"><strong>💡 Efficiency Tip:</strong> Use these quick links instead of switching between browser tabs</p>
           </div>
         `
-            },
-            home: {
-                title: '🏠 Home Tab Dashboard',
-                content: `
+      },
+      home: {
+        title: '🏠 Home Tab Dashboard',
+        content: `
           <p class="mb-4">The Home Tab serves as your personal dashboard for managing work:</p>
           <div class="space-y-3 mb-4">
             <div class="p-4 rounded-lg border-l-4">
@@ -641,10 +636,10 @@
             <p class="text-sm"><strong>💡 Dashboard Tip:</strong> Check your Home Tab regularly to stay on top of requester responses and escalation returns</p>
           </div>
         `
-            },
-            actionBar: {
-                title: '⚙️ Bottom Action Bar',
-                content: `
+      },
+      actionBar: {
+        title: '⚙️ Bottom Action Bar',
+        content: `
           <p class="mb-4">Controls ticket status and final actions:</p>
           <div class="mb-4 p-4 rounded-lg border-l-4">
             <p class="font-semibold mb-2">🎯 Stay on Ticket Setting</p>
@@ -688,10 +683,10 @@
             <p class="text-sm">Macros can be edited to add or remove specific information for the customer</p>
           </div>
         `
-            },
-            ticketMerge: {
-                title: '🔗 Ticket Merging & Procedures',
-                content: `
+      },
+      ticketMerge: {
+        title: '🔗 Ticket Merging & Procedures',
+        content: `
           <p class="mb-4">Important procedures for ticket management:</p>
           <div class="mb-4 p-4 rounded-lg border-l-4">
             <p class="font-semibold mb-2">🔗 Ticket Merging</p>
@@ -729,10 +724,10 @@
             <p class="text-sm"><strong>💡 Best Practice:</strong> Always check for duplicate tickets before starting work to maintain consistency in customer communication</p>
           </div>
         `
-            },
-            loginAccess: {
-                title: '🔐 How to Login to Zendesk',
-                content: `
+      },
+      loginAccess: {
+        title: '🔐 How to Login to Zendesk',
+        content: `
              
           <p class="mb-4">Follow these steps to access your Zendesk account:</p>
           <div class="mb-4 p-4 rounded-lg border-l-4">
@@ -742,6 +737,11 @@
                 <strong>Access the Zendesk URL</strong>
                 <p class="mt-1 opacity-80">Navigate to your organization's Zendesk login page using the provided link</p>
               </li>
+              <li>
+                     <div class="mb-4 flex justify-left p-2 rounded-lg">
+            <img src="login.png" alt="Zendesk Login Screen" class="max-w-full h-auto rounded" style="max-height: 250px;">
+          </div>
+                </li>
               <li>
                 <strong>Enter Your Credentials</strong>
                 <p class="mt-1 opacity-80">Input your registered email address and password</p>
@@ -775,9 +775,7 @@
               <li>• Optional "Remember me" checkbox</li>
             </ul>
           </div>
-             <div class="mb-4 flex justify-center bg-gray-100 p-2 rounded-lg">
-            <img src="login.png" alt="Zendesk Login Screen" class="max-w-full h-auto rounded shadow-sm border border-gray-300" style="max-height: 250px;">
-          </div>
+        
           <div class="p-4 rounded-lg border-l-4" style="border-color: #10b981;">
             <p class="font-semibold mb-2">💡 First-Time Access:</p>
             <p class="text-sm mb-2">If you're accessing Zendesk for the first time:</p>
@@ -792,214 +790,214 @@
             <p class="text-sm"><strong>🔒 Security Tip:</strong> Never share your login credentials. If you suspect your account has been compromised, contact your administrator immediately to reset your password.</p>
           </div>
         `
-            }
+      }
+    };
+
+    async function onConfigChange(config) {
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
+      const moduleTitle = config.module_title || defaultConfig.module_title;
+      const moduleSubtitle = config.module_subtitle || defaultConfig.module_subtitle;
+
+      document.body.style.backgroundColor = backgroundColor;
+      document.body.style.color = textColor;
+      document.body.style.fontFamily = `${fontFamily}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      document.body.style.fontSize = `${fontSize}px`;
+
+      document.getElementById('moduleTitle').textContent = moduleTitle;
+      document.getElementById('moduleTitle').style.fontSize = `${fontSize * 2}px`;
+      document.getElementById('moduleTitle').style.color = textColor;
+
+      document.getElementById('moduleSubtitle').textContent = moduleSubtitle;
+      document.getElementById('moduleSubtitle').style.fontSize = `${fontSize * 1.25}px`;
+      document.getElementById('moduleSubtitle').style.color = textColor;
+
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      welcomeScreen.style.backgroundColor = backgroundColor;
+
+      const startBtn = document.getElementById('startBtn');
+      startBtn.style.backgroundColor = primaryColor;
+      startBtn.style.color = '#ffffff';
+
+      const header = document.querySelector('header');
+      header.style.backgroundColor = surfaceColor;
+      header.style.color = textColor;
+
+      const resetBtn = document.getElementById('resetBtn');
+      resetBtn.style.backgroundColor = surfaceColor;
+      resetBtn.style.color = primaryColor;
+      resetBtn.style.border = `2px solid ${primaryColor}`;
+
+      const progressCircle = document.getElementById('progressCircle');
+      progressCircle.style.stroke = accentColor;
+
+      const sectionBtns = document.querySelectorAll('.section-btn');
+      sectionBtns.forEach(btn => {
+        btn.style.backgroundColor = surfaceColor;
+        btn.style.color = textColor;
+      });
+
+      const simulator = document.getElementById('simulator');
+      simulator.style.backgroundColor = surfaceColor;
+
+      const mockInterface = simulator.querySelector('.relative.border-4');
+      mockInterface.style.borderColor = primaryColor;
+
+      const leftSidebar = mockInterface.querySelector('.w-64.border-r');
+      leftSidebar.style.backgroundColor = backgroundColor;
+      leftSidebar.style.borderColor = textColor + '20';
+
+      const rightSidebar = mockInterface.querySelector('.w-64.border-l');
+      rightSidebar.style.backgroundColor = backgroundColor;
+      rightSidebar.style.borderColor = textColor + '20';
+
+      const topBar = mockInterface.querySelector('.h-16.border-b');
+      topBar.style.backgroundColor = primaryColor;
+      topBar.style.borderColor = textColor + '20';
+
+      const infoPanel = document.getElementById('infoPanel');
+      infoPanel.style.backgroundColor = surfaceColor;
+      infoPanel.style.color = textColor;
+
+      const hotspots = document.querySelectorAll('.hotspot');
+      hotspots.forEach(hotspot => {
+        if (!hotspot.classList.contains('active')) {
+          hotspot.style.backgroundColor = `${primaryColor}B3`;
+          hotspot.style.borderColor = '#ffffff';
+        }
+      });
+    }
+
+    function updateProgress() {
+      const progress = (visitedHotspots.size / totalHotspots) * 100;
+      const progressText = document.getElementById('progressText');
+      const progressCircle = document.getElementById('progressCircle');
+      const circumference = 163.36;
+      const offset = circumference - (progress / 100) * circumference;
+
+      progressText.textContent = `${Math.round(progress)}%`;
+      progressCircle.style.strokeDashoffset = offset;
+    }
+
+    function showInfo(hotspotId) {
+      const content = hotspotContent[hotspotId];
+      if (!content) return;
+
+      visitedHotspots.add(hotspotId);
+      updateProgress();
+
+      // FIX: Check if hotspot exists before manipulating class/style
+      // This handles the Login button which maps to content but has no physical dot
+      const hotspot = document.querySelector(`[data-hotspot="${hotspotId}"]`);
+      if (hotspot) {
+        hotspot.classList.add('active');
+        // FIX: Safe check for SDK config
+        const config = (window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig;
+        hotspot.style.backgroundColor = (config.accent_color || defaultConfig.accent_color) + 'E6';
+        hotspot.style.borderColor = config.accent_color || defaultConfig.accent_color;
+      }
+
+      const infoPanel = document.getElementById('infoPanel');
+      const infoPanelTitle = document.getElementById('infoPanelTitle');
+      const infoPanelContent = document.getElementById('infoPanelContent');
+
+      infoPanelTitle.textContent = content.title;
+      infoPanelContent.innerHTML = content.content;
+      infoPanel.classList.remove('hidden');
+
+      // FIX: Smooth scroll to explanation
+      setTimeout(() => {
+        infoPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        infoPanel.style.transition = "transform 0.3s ease";
+        infoPanel.style.transform = "scale(1.02)";
+        setTimeout(() => infoPanel.style.transform = "scale(1)", 300);
+      }, 50);
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('welcomeScreen').classList.add('hidden');
+      document.getElementById('learningScreen').classList.remove('hidden');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      visitedHotspots.clear();
+      updateProgress();
+
+      const hotspots = document.querySelectorAll('.hotspot');
+      hotspots.forEach(hotspot => {
+        hotspot.classList.remove('active');
+        const config = (window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig;
+        hotspot.style.backgroundColor = (config.primary_color || defaultConfig.primary_color) + 'B3';
+        hotspot.style.borderColor = '#ffffff';
+      });
+
+      document.getElementById('infoPanel').classList.add('hidden');
+    });
+
+    document.getElementById('closeInfo').addEventListener('click', () => {
+      document.getElementById('infoPanel').classList.add('hidden');
+    });
+
+    document.querySelectorAll('.hotspot').forEach(hotspot => {
+      hotspot.addEventListener('click', () => {
+        const hotspotId = hotspot.dataset.hotspot;
+        showInfo(hotspotId);
+      });
+    });
+
+    document.querySelectorAll('.section-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.dataset.section;
+
+        const sectionHotspots = {
+          login: ['loginAccess'], // Mapped login button
+          topRight: ['search'],
+          leftPanel: ['view', 'assignee', 'requester', 'locationId', 'priority'],
+          midPage: ['subject', 'reply'],
+          rightPanel: ['customer', 'apps'],
+          homeTab: ['home'],
+          actionBar: ['actionBar'],
+          procedures: ['ticketMerge']
         };
 
-        async function onConfigChange(config) {
-            const primaryColor = config.primary_color || defaultConfig.primary_color;
-            const backgroundColor = config.background_color || defaultConfig.background_color;
-            const surfaceColor = config.surface_color || defaultConfig.surface_color;
-            const textColor = config.text_color || defaultConfig.text_color;
-            const accentColor = config.accent_color || defaultConfig.accent_color;
-            const fontFamily = config.font_family || defaultConfig.font_family;
-            const fontSize = config.font_size || defaultConfig.font_size;
-            const moduleTitle = config.module_title || defaultConfig.module_title;
-            const moduleSubtitle = config.module_subtitle || defaultConfig.module_subtitle;
-
-            document.body.style.backgroundColor = backgroundColor;
-            document.body.style.color = textColor;
-            document.body.style.fontFamily = `${fontFamily}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
-            document.body.style.fontSize = `${fontSize}px`;
-
-            document.getElementById('moduleTitle').textContent = moduleTitle;
-            document.getElementById('moduleTitle').style.fontSize = `${fontSize * 2}px`;
-            document.getElementById('moduleTitle').style.color = textColor;
-
-            document.getElementById('moduleSubtitle').textContent = moduleSubtitle;
-            document.getElementById('moduleSubtitle').style.fontSize = `${fontSize * 1.25}px`;
-            document.getElementById('moduleSubtitle').style.color = textColor;
-
-            const welcomeScreen = document.getElementById('welcomeScreen');
-            welcomeScreen.style.backgroundColor = backgroundColor;
-
-            const startBtn = document.getElementById('startBtn');
-            startBtn.style.backgroundColor = primaryColor;
-            startBtn.style.color = '#ffffff';
-
-            const header = document.querySelector('header');
-            header.style.backgroundColor = surfaceColor;
-            header.style.color = textColor;
-
-            const resetBtn = document.getElementById('resetBtn');
-            resetBtn.style.backgroundColor = surfaceColor;
-            resetBtn.style.color = primaryColor;
-            resetBtn.style.border = `2px solid ${primaryColor}`;
-
-            const progressCircle = document.getElementById('progressCircle');
-            progressCircle.style.stroke = accentColor;
-
-            const sectionBtns = document.querySelectorAll('.section-btn');
-            sectionBtns.forEach(btn => {
-                btn.style.backgroundColor = surfaceColor;
-                btn.style.color = textColor;
-            });
-
-            const simulator = document.getElementById('simulator');
-            simulator.style.backgroundColor = surfaceColor;
-
-            const mockInterface = simulator.querySelector('.relative.border-4');
-            mockInterface.style.borderColor = primaryColor;
-
-            const leftSidebar = mockInterface.querySelector('.w-64.border-r');
-            leftSidebar.style.backgroundColor = backgroundColor;
-            leftSidebar.style.borderColor = textColor + '20';
-
-            const rightSidebar = mockInterface.querySelector('.w-64.border-l');
-            rightSidebar.style.backgroundColor = backgroundColor;
-            rightSidebar.style.borderColor = textColor + '20';
-
-            const topBar = mockInterface.querySelector('.h-16.border-b');
-            topBar.style.backgroundColor = primaryColor;
-            topBar.style.borderColor = textColor + '20';
-
-            const infoPanel = document.getElementById('infoPanel');
-            infoPanel.style.backgroundColor = surfaceColor;
-            infoPanel.style.color = textColor;
-
-            const hotspots = document.querySelectorAll('.hotspot');
-            hotspots.forEach(hotspot => {
-                if (!hotspot.classList.contains('active')) {
-                    hotspot.style.backgroundColor = `${primaryColor}B3`;
-                    hotspot.style.borderColor = '#ffffff';
-                }
-            });
+        if (sectionHotspots[section] && sectionHotspots[section].length > 0) {
+          showInfo(sectionHotspots[section][0]);
         }
+      });
+    });
 
-        function updateProgress() {
-            const progress = (visitedHotspots.size / totalHotspots) * 100;
-            const progressText = document.getElementById('progressText');
-            const progressCircle = document.getElementById('progressCircle');
-            const circumference = 163.36;
-            const offset = circumference - (progress / 100) * circumference;
+    // Initialize with default config immediately
+    onConfigChange(defaultConfig);
 
-            progressText.textContent = `${Math.round(progress)}%`;
-            progressCircle.style.strokeDashoffset = offset;
-        }
-
-        function showInfo(hotspotId) {
-            const content = hotspotContent[hotspotId];
-            if (!content) return;
-
-            visitedHotspots.add(hotspotId);
-            updateProgress();
-
-            // FIX: Check if hotspot exists before manipulating class/style
-            // This handles the Login button which maps to content but has no physical dot
-            const hotspot = document.querySelector(`[data-hotspot="${hotspotId}"]`);
-            if (hotspot) {
-                hotspot.classList.add('active');
-                // FIX: Safe check for SDK config
-                const config = (window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig;
-                hotspot.style.backgroundColor = (config.accent_color || defaultConfig.accent_color) + 'E6';
-                hotspot.style.borderColor = config.accent_color || defaultConfig.accent_color;
-            }
-
-            const infoPanel = document.getElementById('infoPanel');
-            const infoPanelTitle = document.getElementById('infoPanelTitle');
-            const infoPanelContent = document.getElementById('infoPanelContent');
-
-            infoPanelTitle.textContent = content.title;
-            infoPanelContent.innerHTML = content.content;
-            infoPanel.classList.remove('hidden');
-
-            // FIX: Smooth scroll to explanation
-            setTimeout(() => {
-                infoPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                infoPanel.style.transition = "transform 0.3s ease";
-                infoPanel.style.transform = "scale(1.02)";
-                setTimeout(() => infoPanel.style.transform = "scale(1)", 300);
-            }, 50);
-        }
-
-        document.getElementById('startBtn').addEventListener('click', () => {
-            document.getElementById('welcomeScreen').classList.add('hidden');
-            document.getElementById('learningScreen').classList.remove('hidden');
-        });
-
-        document.getElementById('resetBtn').addEventListener('click', () => {
-            visitedHotspots.clear();
-            updateProgress();
-
-            const hotspots = document.querySelectorAll('.hotspot');
-            hotspots.forEach(hotspot => {
-                hotspot.classList.remove('active');
-                const config = (window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig;
-                hotspot.style.backgroundColor = (config.primary_color || defaultConfig.primary_color) + 'B3';
-                hotspot.style.borderColor = '#ffffff';
-            });
-
-            document.getElementById('infoPanel').classList.add('hidden');
-        });
-
-        document.getElementById('closeInfo').addEventListener('click', () => {
-            document.getElementById('infoPanel').classList.add('hidden');
-        });
-
-        document.querySelectorAll('.hotspot').forEach(hotspot => {
-            hotspot.addEventListener('click', () => {
-                const hotspotId = hotspot.dataset.hotspot;
-                showInfo(hotspotId);
-            });
-        });
-
-        document.querySelectorAll('.section-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const section = btn.dataset.section;
-
-                const sectionHotspots = {
-                    login: ['loginAccess'], // Mapped login button
-                    topRight: ['search'],
-                    leftPanel: ['view', 'assignee', 'requester', 'locationId', 'priority'],
-                    midPage: ['subject', 'reply'],
-                    rightPanel: ['customer', 'apps'],
-                    homeTab: ['home'],
-                    actionBar: ['actionBar'],
-                    procedures: ['ticketMerge']
-                };
-
-                if (sectionHotspots[section] && sectionHotspots[section].length > 0) {
-                    showInfo(sectionHotspots[section][0]);
-                }
-            });
-        });
-
-        // Initialize with default config immediately
-        onConfigChange(defaultConfig);
-
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities: (config) => ({
-                    recolorables: [
-                        { get: () => config.primary_color || defaultConfig.primary_color, set: (v) => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
-                        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-                        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-                        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-                        { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } }
-                    ],
-                    borderables: [],
-                    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-                    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
-                }),
-                mapToEditPanelValues: (config) => new Map([
-                    ['module_title', config.module_title || defaultConfig.module_title],
-                    ['module_subtitle', config.module_subtitle || defaultConfig.module_subtitle]
-                ])
-            });
-            onConfigChange(window.elementSdk.config);
-        }
-    </script>
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            { get: () => config.primary_color || defaultConfig.primary_color, set: (v) => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
+            { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+            { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+            { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+            { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } }
+          ],
+          borderables: [],
+          fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+          fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['module_title', config.module_title || defaultConfig.module_title],
+          ['module_subtitle', config.module_subtitle || defaultConfig.module_subtitle]
+        ])
+      });
+      onConfigChange(window.elementSdk.config);
+    }
+  </script>
 </body>
 
 </html>
