@@ -32,7 +32,7 @@
             box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
             transition: all 0.3s ease;
             z-index: 50;
-            /* Added high z-index to ensure clickability */
+            /* Ensures dots are clickable */
         }
 
         .hotspot:hover {
@@ -82,7 +82,7 @@
             transform: translateY(-2px);
         }
 
-        /* Added smooth scrolling for the explanation reveal */
+        /* Smooth scrolling for user experience */
         html {
             scroll-behavior: smooth;
         }
@@ -120,6 +120,7 @@
                     Learning → </button>
             </div>
         </div>
+
         <div id="learningScreen" class="hidden h-full w-full flex flex-col">
             <header class="px-6 py-4 shadow-md flex items-center justify-between">
                 <h2 class="text-2xl font-bold">Zendesk Ticket Management</h2>
@@ -140,131 +141,113 @@
                         class="px-4 py-2 text-sm rounded-lg hover:opacity-80 transition-opacity"> Reset </button>
                 </div>
             </header>
+
             <div class="flex-1 overflow-y-auto">
                 <div class="max-w-7xl mx-auto p-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8"><button
-                            class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                            data-section="login">
+                            <div class="text-3xl mb-2">🔐</div>
+                            <h3 class="font-bold text-lg mb-1">Login Guide</h3>
+                            <p class="text-sm opacity-80">Access Instructions</p>
+                        </button>
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
                             data-section="topRight">
-                            <div class="text-3xl mb-2">
-                                🔍
-                            </div>
+                            <div class="text-3xl mb-2">🔍</div>
                             <h3 class="font-bold text-lg mb-1">Top Right</h3>
                             <p class="text-sm opacity-80">Search &amp; Navigation</p>
-                        </button> <button
-                            class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                        </button>
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
                             data-section="leftPanel">
-                            <div class="text-3xl mb-2">
-                                📋
-                            </div>
+                            <div class="text-3xl mb-2">📋</div>
                             <h3 class="font-bold text-lg mb-1">Left Panel</h3>
                             <p class="text-sm opacity-80">Ticket Details</p>
-                        </button> <button
-                            class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                        </button>
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
                             data-section="midPage">
-                            <div class="text-3xl mb-2">
-                                💬
-                            </div>
+                            <div class="text-3xl mb-2">💬</div>
                             <h3 class="font-bold text-lg mb-1">Mid Page</h3>
                             <p class="text-sm opacity-80">Communication</p>
-                        </button> <button
-                            class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                        </button>
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
                             data-section="rightPanel">
-                            <div class="text-3xl mb-2">
-                                🔧
-                            </div>
+                            <div class="text-3xl mb-2">🔧</div>
                             <h3 class="font-bold text-lg mb-1">Right Panel</h3>
                             <p class="text-sm opacity-80">Context &amp; Tools</p>
-                        </button> <button
-                            class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                        </button>
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
                             data-section="homeTab">
-                            <div class="text-3xl mb-2">
-                                🏠
-                            </div>
+                            <div class="text-3xl mb-2">🏠</div>
                             <h3 class="font-bold text-lg mb-1">Home Tab</h3>
                             <p class="text-sm opacity-80">Dashboard &amp; Stats</p>
-                        </button> <button
-                            class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                        </button>
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
                             data-section="actionBar">
-                            <div class="text-3xl mb-2">
-                                ⚙️
-                            </div>
+                            <div class="text-3xl mb-2">⚙️</div>
                             <h3 class="font-bold text-lg mb-1">Action Bar</h3>
                             <p class="text-sm opacity-80">Status &amp; Macros</p>
-                        </button> <button
-                            class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
+                        </button>
+                        <button class="section-btn section-card p-6 rounded-lg text-left shadow-md hover:shadow-lg"
                             data-section="procedures">
-                            <div class="text-3xl mb-2">
-                                📝
-                            </div>
+                            <div class="text-3xl mb-2">📝</div>
                             <h3 class="font-bold text-lg mb-1">Procedures</h3>
                             <p class="text-sm opacity-80">Best Practices</p>
                         </button>
                     </div>
+
                     <div id="simulator" class="rounded-lg shadow-xl overflow-hidden mb-8">
                         <div class="p-6">
                             <h3 class="text-2xl font-bold mb-4">Interactive Zendesk Interface</h3>
                             <p class="mb-6 opacity-80">Click on the hotspots to learn about each area. The explanation
                                 will appear below the image.</p>
+
                             <div class="relative border-4 rounded-lg overflow-hidden" style="min-height: 600px;">
                                 <div class="absolute inset-0">
                                     <div class="h-16 border-b flex items-center justify-between px-4"
                                         style="background: #03363d;">
                                         <div class="flex items-center gap-4">
                                             <div class="w-8 h-8 rounded flex items-center justify-center font-bold text-white"
-                                                style="background: #03363d;">
-                                                Z
-                                            </div>
+                                                style="background: #03363d;">Z</div>
                                             <div class="w-8 h-8 rounded-full flex items-center justify-center"
-                                                style="background: #037f8c; font-size: 18px;">
-                                                🏠
-                                            </div><span class="font-semibold text-white">Ticket #12345</span>
+                                                style="background: #037f8c; font-size: 18px;">🏠</div>
+                                            <span class="font-semibold text-white">Ticket #12345</span>
                                         </div>
                                         <div class="flex items-center gap-2">
                                             <div class="w-8 h-8 rounded-full flex items-center justify-center"
-                                                style="background: #037f8c; font-size: 18px;">
-                                                🔍
-                                            </div>
+                                                style="background: #037f8c; font-size: 18px;">🔍</div>
                                         </div>
                                     </div>
+
                                     <div class="flex" style="height: calc(100% - 64px);">
                                         <div class="w-64 border-r p-4 overflow-y-auto" style="background: #f8f9fa;">
                                             <div class="mb-4"><label class="block text-xs font-semibold mb-1"
                                                     style="color: #68737d;">VIEW</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">
-                                                    Fraud support Single view
-                                                </div>
+                                                <div class="px-3 py-2 rounded text-sm border bg-white">Fraud support
+                                                    Single view</div>
                                             </div>
                                             <div class="mb-4"><label class="block text-xs font-semibold mb-1"
                                                     style="color: #68737d;">ASSIGNEE</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">
-                                                    Fraud Support
+                                                <div class="px-3 py-2 rounded text-sm border bg-white">Fraud Support
                                                 </div>
                                             </div>
                                             <div class="mb-4"><label class="block text-xs font-semibold mb-1"
                                                     style="color: #68737d;">REQUESTER</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">
-                                                    John Doe
-                                                </div>
+                                                <div class="px-3 py-2 rounded text-sm border bg-white">John Doe</div>
                                             </div>
                                             <div class="mb-4"><label class="block text-xs font-semibold mb-1"
                                                     style="color: #68737d;">LOCATION ID</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">
-                                                    LOC-98765
-                                                </div>
+                                                <div class="px-3 py-2 rounded text-sm border bg-white">LOC-98765</div>
                                             </div>
                                             <div class="mb-4"><label class="block text-xs font-semibold mb-1"
                                                     style="color: #68737d;">PRIORITY</label>
-                                                <div class="px-3 py-2 rounded text-sm border bg-white">
-                                                    Normal
-                                                </div>
+                                                <div class="px-3 py-2 rounded text-sm border bg-white">Normal</div>
                                             </div>
                                         </div>
+
                                         <div class="flex-1 p-6 overflow-y-auto">
                                             <div class="mb-4">
                                                 <h2 class="text-xl font-bold mb-2">Review Removal Request</h2>
-                                                <div class="text-sm opacity-60">
-                                                    Created: 2 hours ago
-                                                </div>
+                                                <div class="text-sm opacity-60">Created: 2 hours ago</div>
                                             </div>
                                             <div class="rounded-lg p-4 mb-4">
                                                 <p class="mb-4">Customer is requesting review of removed content from
@@ -273,66 +256,54 @@
                                             <div class="rounded-lg p-4 mb-20"><label
                                                     class="block text-sm font-semibold mb-2">Reply:</label>
                                                 <div class="border rounded p-3 min-h-24 text-sm bg-white mb-3"
-                                                    style="color: #68737d;">
-                                                    Type your response here...
-                                                </div>
-                                                <div class="flex gap-2"><button
-                                                        class="px-4 py-2 text-sm rounded border bg-white"
-                                                        style="color: #2f3941;">Internal Note</button> <button
-                                                        class="px-4 py-2 text-sm rounded text-white"
+                                                    style="color: #68737d;">Type your response here...</div>
+                                                <div class="flex gap-2">
+                                                    <button class="px-4 py-2 text-sm rounded border bg-white"
+                                                        style="color: #2f3941;">Internal Note</button>
+                                                    <button class="px-4 py-2 text-sm rounded text-white"
                                                         style="background: #1f73b7;">Public Reply</button>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="w-64 border-l p-4 overflow-y-auto" style="background: #f8f9fa;">
                                             <div class="mb-6">
                                                 <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">CUSTOMER
                                                     CONTEXT</h3>
                                                 <div class="text-sm space-y-2">
-                                                    <div>
-                                                        <span style="color: #68737d;">Email:</span> john@example.com
+                                                    <div><span style="color: #68737d;">Email:</span> john@example.com
                                                     </div>
-                                                    <div>
-                                                        <span style="color: #68737d;">Local time:</span> 2:30 PM
-                                                    </div>
-                                                    <div>
-                                                        <span style="color: #68737d;">Language:</span> English
-                                                    </div>
+                                                    <div><span style="color: #68737d;">Local time:</span> 2:30 PM</div>
+                                                    <div><span style="color: #68737d;">Language:</span> English</div>
                                                 </div>
                                             </div>
                                             <div class="mb-6">
                                                 <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">KNOWLEDGE
                                                 </h3>
-                                                <div class="text-sm" style="color: #68737d;">
-                                                    Confluence access
-                                                </div>
+                                                <div class="text-sm" style="color: #68737d;">Confluence access</div>
                                             </div>
                                             <div>
                                                 <h3 class="font-semibold mb-2 text-sm" style="color: #68737d;">APPS</h3>
                                                 <div class="space-y-2 text-sm">
-                                                    <div>
-                                                        📍 URD
-                                                    </div>
-                                                    <div>
-                                                        🏢 Location Center
-                                                    </div>
-                                                    <div>
-                                                        👤 Owner Tool
-                                                    </div>
+                                                    <div>📍 URD</div>
+                                                    <div>🏢 Location Center</div>
+                                                    <div>👤 Owner Tool</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="absolute bottom-0 left-0 right-0 h-16 border-t px-4 flex items-center justify-between"
-                                        style="background: #f8f9fa;"><button
-                                            class="px-4 py-2 rounded text-sm font-semibold text-white"
+                                        style="background: #f8f9fa;">
+                                        <button class="px-4 py-2 rounded text-sm font-semibold text-white"
                                             style="background: #1f73b7;">Apply Macro</button>
-                                        <div class="flex items-center gap-3"><select
-                                                class="px-3 py-2 rounded text-sm border bg-white"
+                                        <div class="flex items-center gap-3">
+                                            <select class="px-3 py-2 rounded text-sm border bg-white"
                                                 style="color: #2f3941;">
                                                 <option>Next available ticket</option>
                                                 <option>Stay on ticket</option>
-                                            </select> <select class="px-3 py-2 rounded text-sm border bg-white"
+                                            </select>
+                                            <select class="px-3 py-2 rounded text-sm border bg-white"
                                                 style="color: #2f3941;">
                                                 <option>New</option>
                                                 <option>Open</option>
@@ -343,6 +314,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="hotspot" data-hotspot="search" style="top: 20px; right: 60px;"></div>
                                 <div class="hotspot" data-hotspot="home" style="top: 20px; left: 130px;"></div>
                                 <div class="hotspot" data-hotspot="view" style="top: 90px; left: 20px;"></div>
@@ -362,6 +334,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div id="infoPanel" class="hidden rounded-lg shadow-lg p-6 mb-8 border-2 border-blue-500 bg-white">
                         <div class="flex justify-between items-start mb-4">
                             <h3 id="infoPanelTitle" class="text-2xl font-bold text-blue-800"></h3><button id="closeInfo"
@@ -373,6 +346,7 @@
             </div>
         </div>
     </div>
+
     <script>
         const defaultConfig = {
             primary_color: '#03363d',
@@ -387,9 +361,10 @@
         };
 
         let visitedHotspots = new Set();
-        const totalHotspots = 13;
+        const totalHotspots = 14;
 
         const hotspotContent = {
+            // --- RESTORED FULL CONTENT ---
             search: {
                 title: '🔍 Search Functionality',
                 content: `
@@ -754,6 +729,65 @@
             <p class="text-sm"><strong>💡 Best Practice:</strong> Always check for duplicate tickets before starting work to maintain consistency in customer communication</p>
           </div>
         `
+            },
+            loginAccess: {
+                title: '🔐 How to Login to Zendesk',
+                content: `
+          <p class="mb-4">Follow these steps to access your Zendesk account:</p>
+          <div class="mb-4 p-4 rounded-lg border-l-4">
+            <p class="font-semibold mb-3">📋 Login Steps:</p>
+            <ol class="text-sm space-y-3 ml-4 list-decimal">
+              <li>
+                <strong>Access the Zendesk URL</strong>
+                <p class="mt-1 opacity-80">Navigate to your organization's Zendesk login page using the provided link</p>
+              </li>
+              <li>
+                <strong>Enter Your Credentials</strong>
+                <p class="mt-1 opacity-80">Input your registered email address and password</p>
+                <div class="mt-2 p-3 rounded" style="background: rgba(0,0,0,0.05);">
+                  <p class="text-xs mb-1">✉️ <strong>Email:</strong> your.email@company.com</p>
+                  <p class="text-xs">🔒 <strong>Password:</strong> Your secure password</p>
+                </div>
+              </li>
+              <li>
+                <strong>Click "Sign In"</strong>
+                <p class="mt-1 opacity-80">Submit your credentials to access the platform</p>
+              </li>
+            </ol>
+          </div>
+          <div class="mb-4 p-4 rounded-lg border-l-4" style="border-color: #f59e0b;">
+            <p class="font-semibold mb-2">⚠️ Important Requirements:</p>
+            <ul class="text-sm space-y-2 ml-4">
+              <li>• <strong>Registration Required:</strong> You must be registered by your administrator to gain access</li>
+              <li>• <strong>Credentials Required Each Time:</strong> Enter your username (email) and password for every login session</li>
+              <li>• <strong>No Auto-Login:</strong> For security purposes, credentials are not saved between sessions</li>
+            </ul>
+          </div>
+          <div class="mb-4 p-4 rounded-lg" style="background: rgba(31, 115, 183, 0.1);">
+            <p class="font-semibold mb-2">🖼️ Visual Reference:</p>
+            <p class="text-sm mb-3">The Zendesk login page includes:</p>
+            <ul class="text-sm space-y-1 ml-4">
+              <li>• Company/Subdomain field (if applicable)</li>
+              <li>• Email address field</li>
+              <li>• Password field</li>
+              <li>• "Sign in" button</li>
+              <li>• Optional "Remember me" checkbox</li>
+            </ul>
+          </div>
+          <div class="p-4 rounded-lg border-l-4" style="border-color: #10b981;">
+            <p class="font-semibold mb-2">💡 First-Time Access:</p>
+            <p class="text-sm mb-2">If you're accessing Zendesk for the first time:</p>
+            <ol class="text-sm space-y-2 ml-4 list-decimal">
+              <li>Contact your team administrator to request account registration</li>
+              <li>Wait for the invitation email from Zendesk</li>
+              <li>Follow the link in the email to set up your password</li>
+              <li>Complete any additional authentication steps (2FA if enabled)</li>
+            </ol>
+          </div>
+          <div class="mt-4 p-4 rounded-lg" style="background: rgba(239, 68, 68, 0.1);">
+            <p class="text-sm"><strong>🔒 Security Tip:</strong> Never share your login credentials. If you suspect your account has been compromised, contact your administrator immediately to reset your password.</p>
+          </div>
+        `
             }
         };
 
@@ -855,14 +889,16 @@
             visitedHotspots.add(hotspotId);
             updateProgress();
 
+            // FIX: Check if hotspot exists before manipulating class/style
+            // This handles the Login button which maps to content but has no physical dot
             const hotspot = document.querySelector(`[data-hotspot="${hotspotId}"]`);
-            hotspot.classList.add('active');
-
-            // --- FIX: CHECK IF SDK EXISTS, IF NOT USE DEFAULT ---
-            const config = (window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig;
-
-            hotspot.style.backgroundColor = (config.accent_color || defaultConfig.accent_color) + 'E6';
-            hotspot.style.borderColor = config.accent_color || defaultConfig.accent_color;
+            if (hotspot) {
+                hotspot.classList.add('active');
+                // FIX: Safe check for SDK config
+                const config = (window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig;
+                hotspot.style.backgroundColor = (config.accent_color || defaultConfig.accent_color) + 'E6';
+                hotspot.style.borderColor = config.accent_color || defaultConfig.accent_color;
+            }
 
             const infoPanel = document.getElementById('infoPanel');
             const infoPanelTitle = document.getElementById('infoPanelTitle');
@@ -872,10 +908,9 @@
             infoPanelContent.innerHTML = content.content;
             infoPanel.classList.remove('hidden');
 
-            // --- IMPROVEMENT: SMOOTHER SCROLL TO SHOW CONTENT BELOW IMAGE ---
+            // FIX: Smooth scroll to explanation
             setTimeout(() => {
                 infoPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                // Add a small highlight animation
                 infoPanel.style.transition = "transform 0.3s ease";
                 infoPanel.style.transform = "scale(1.02)";
                 setTimeout(() => infoPanel.style.transform = "scale(1)", 300);
@@ -894,10 +929,7 @@
             const hotspots = document.querySelectorAll('.hotspot');
             hotspots.forEach(hotspot => {
                 hotspot.classList.remove('active');
-
-                // --- FIX: CHECK IF SDK EXISTS ---
                 const config = (window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig;
-
                 hotspot.style.backgroundColor = (config.primary_color || defaultConfig.primary_color) + 'B3';
                 hotspot.style.borderColor = '#ffffff';
             });
@@ -919,7 +951,9 @@
         document.querySelectorAll('.section-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const section = btn.dataset.section;
+
                 const sectionHotspots = {
+                    login: ['loginAccess'], // Mapped login button
                     topRight: ['search'],
                     leftPanel: ['view', 'assignee', 'requester', 'locationId', 'priority'],
                     midPage: ['subject', 'reply'],
@@ -935,7 +969,7 @@
             });
         });
 
-        // Initialize with default config immediately in case SDK fails to load
+        // Initialize with default config immediately
         onConfigChange(defaultConfig);
 
         if (window.elementSdk) {
@@ -943,7 +977,16 @@
                 defaultConfig,
                 onConfigChange,
                 mapToCapabilities: (config) => ({
-                    // ... (kept capabilities as is) ...
+                    recolorables: [
+                        { get: () => config.primary_color || defaultConfig.primary_color, set: (v) => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
+                        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+                        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+                        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+                        { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } }
+                    ],
+                    borderables: [],
+                    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+                    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
                 }),
                 mapToEditPanelValues: (config) => new Map([
                     ['module_title', config.module_title || defaultConfig.module_title],
